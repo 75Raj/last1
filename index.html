@@ -731,22 +731,31 @@
                 </div>
             </div>
 
-            <div class="page" id="page2">
-                <h3 class="glow1">Now, here are my direct questions to you:</h3>
-                <p>What’s your name?</p>
-                <p>How many more days will you stay in the library?</p>
-                <p>In this week — Yes or No?</p>
-                <p>Not now, but in the future — Yes or No?</p>
-                <p>Or is it never?</p>
-                <p>not possible</p>
-                <div class="story-box" onclick="document.getElementById('storyPopup').classList.add('show')">
-                    Friend Story — Click to Read
-                </div>
-                <div class="btn-nav">
-                    <button onclick="prevPage()">⟵ Previous</button>
-                    <button onclick="nextPage()">Next ⟶</button>
-                </div>
-            </div>
+            <<div class="page" id="page2">
+    <h3 class="glow1">Now, here are my direct questions to you:</h3>
+    <p>What’s your name?</p>
+    <p>How many more days will you stay in the library?</p>
+    <p>In this week — Yes or No?</p>
+    <p>Not now, but in the future — Yes or No?</p>
+    <p>Or is it never?</p>
+    <p>not possible</p>
+    <div class="story-box" onclick="document.getElementById('storyPopup').classList.add('show')">
+        Friend Story — Click to Read
+    </div>
+    <!-- Video Button and Popup Moved Here -->
+    <button id="openBtn">Open Video</button>
+    <div id="videoPopup">
+        <video id="myVideo" controls autoplay>
+            <source src="1.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+        <button id="closeBtn">Close Video</button>
+    </div>
+    <div class="btn-nav">
+        <button onclick="prevPage()">⟵ Previous</button>
+        <button onclick="nextPage()">Next ⟶</button>
+    </div>
+</div>
 
             <div class="glow-box-container" id="storyPopup">
                 <div class="glow-box">
@@ -1390,41 +1399,7 @@
         </style>
     </head>
 
-    <body>
-        <button id="openBtn">Open Video</button>
-
-        <div id="videoPopup">
-            <video id="myVideo" controls autoplay>
-                <source src="1.mp4" type="video/mp4">
-                Your browser does not support HTML5 video.
-            </video>
-            <button id="closeBtn">Close Video</button>
-        </div>
-
-        <script>
-            const openBtn = document.getElementById('openBtn');
-            const videoPopup = document.getElementById('videoPopup');
-            const closeBtn = document.getElementById('closeBtn');
-            const myVideo = document.getElementById('myVideo');
-
-            openBtn.addEventListener('click', () => {
-                videoPopup.style.display = 'block';
-                myVideo.play();
-            });
-
-            closeBtn.addEventListener('click', () => {
-                myVideo.pause();
-                myVideo.currentTime = 0;
-                videoPopup.style.display = 'none';
-            });
-
-            myVideo.addEventListener('ended', () => {
-                videoPopup.style.display = 'none';
-            });
-        </script>
-    </body>
-    </div>
-
+   
     <!-- Password Check Script -->
     <script>
         function checkPassword() {
