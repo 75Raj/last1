@@ -115,7 +115,6 @@
     }
 
     @keyframes glow {
-
       0%,
       100% {
         text-shadow: 0 0 10px #fff, 0 0 20px #f0f, 0 0 30px #0ff, 0 0 40px #f0f;
@@ -554,8 +553,7 @@
     }
 
     // Message Box Script
-    const text = `first of all -------𓆩 𝒯𝒽𝒶𝓃𝓀 𝒴𝑜𝓊 𓆪
--------------"Thank you for not complaining about me.-----------"Wait for a few days… I’ve already said it — this is the last time. And yes, this really is the last. After this… I’ll never give you anything again. But what I’ve written — you can still see it. You can check it on not mention this month -2025. But there’s one condition — To see it, you’ll need more than just access — you’ll need I.Q. That file contains multiple passwords. If you already know them — fine. And if not, there are hints given. But if even after the hints, you still can’t figure it out, then don’t bother saying 'yes' or 'no' — because for me, it’s already 'no'. I don’t do all this for just anyone. I want a friend with real intelligence — someone with a sharp mind, who can feel deeply, and solve cleverly. So — Understand it if you can. Otherwise, leave it.`;
+    const text = `Wait for a few days… I’ve already said it — this is the last time. And yes, this really is the last. After this… I’ll never give you anything again. But what I’ve written — you can still see it. You can check it on 21-07-2025. But there’s one condition — To see it, you’ll need more than just access — you’ll need I.Q. That file contains multiple passwords. If you already know them — fine. And if not, there are hints given. But if even after the hints, you still can’t figure it out, then don’t bother saying 'yes' or 'no' — because for me, it’s already 'no'. I don’t do all this for just anyone. I want a friend with real intelligence — someone with a sharp mind, who can feel deeply, and solve cleverly. So — Understand it if you can. Otherwise, leave it.`;
 
     const colors = [
       '#ff6b81', '#6c5ce7', '#00cec9', '#f1c40f', '#55efc4', '#e67e22',
@@ -646,7 +644,7 @@
     let obstacles = [];
     let coins = [];
     let score = 0;
-    let health = 17;
+    let health = 15;
     let level = 1;
     let gameSpeed = 4;
     let frameCount = 0;
@@ -659,7 +657,7 @@
     function formatTime(seconds) {
       const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
       const secs = (seconds % 60).toString().padStart(2, '0');
-      return ${ mins }:${ secs };
+      return `${mins}:${secs}`;
     }
 
     function startTimer() {
@@ -779,7 +777,7 @@
     }
 
     function updateGameInfo() {
-      gameInfo.textContent = Score: ${ score } | Health: ${ health } | Level: ${ level } | Time: ${ formatTime(seconds) } | High Score: ${ highScore } | Last Score: ${ lastScore };
+      gameInfo.textContent = `Score: ${score} | Health: ${health} | Level: ${level} | Time: ${formatTime(seconds)} | High Score: ${highScore} | Last Score: ${lastScore}`;
     }
 
     function handleGameOver() {
