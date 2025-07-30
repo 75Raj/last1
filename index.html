@@ -115,7 +115,6 @@
         }
 
         @keyframes glow {
-
             0%,
             100% {
                 text-shadow: 0 0 10px #000000, 0 0 20px #f0f, 0 0 30px #0ff, 0 0 40px #f0f;
@@ -186,6 +185,7 @@
         .game-button,
         .update-button,
         .video-button,
+        .mobile-button,
         .back-button {
             padding: 15px 30px;
             font-size: 20px;
@@ -221,11 +221,13 @@
         .game-button:hover,
         .update-button:hover,
         .video-button:hover,
+        .mobile-button:hover,
         .back-button:hover,
         .toggle-button:active,
         .game-button:active,
         .update-button:active,
         .video-button:active,
+        .mobile-button:active,
         .back-button:active {
             background: linear-gradient(45deg, #ff69b4, #c71585, #9400d3);
             box-shadow: 0 0 15px #ff69b4, 0 0 20px #b7ff00, 0 0 25px #0aff50;
@@ -236,6 +238,7 @@
         .game-button:active,
         .update-button:active,
         .video-button:active,
+        .mobile-button:active,
         .back-button:active {
             transform: scale(0.95);
         }
@@ -253,7 +256,8 @@
 
         .message-box-container,
         .update-box-container,
-        .video-box-container {
+        .video-box-container,
+        .mobile-box-container {
             display: none;
             justify-content: center;
             align-items: center;
@@ -266,7 +270,8 @@
 
         .message-box,
         .update-box,
-        .video-box {
+        .video-box,
+        .mobile-box {
             width: 0;
             max-height: 70vh;
             padding: 0;
@@ -286,7 +291,7 @@
 
         @keyframes flowBorder {
             0% {
-                border-image: linear-gradient Measures: 1
+                border-image: linear-gradient(45deg, #2ecc71, #b8e994, #87ceeb, #f1c40f, #00cec9) 1;
             }
 
             25% {
@@ -308,7 +313,8 @@
 
         .message-box.open,
         .update-box.open,
-        .video-box.open {
+        .video-box.open,
+        .mobile-box.open {
             width: 80%;
         }
 
@@ -333,13 +339,15 @@
 
         .message-box.open .door-left,
         .update-box.open .door-left,
-        .video-box.open .door-left {
+        .video-box.open .door-left,
+        .mobile-box.open .door-left {
             transform: rotateY(-100deg);
         }
 
         .message-box.open .door-right,
         .update-box.open .door-right,
-        .video-box.open .door-right {
+        .video-box.open .door-right,
+        .mobile-box.open .door-right {
             transform: rotateY(100deg);
         }
 
@@ -353,7 +361,8 @@
 
         .message-box.open .content,
         .update-box.open .content,
-        .video-box.open .content {
+        .video-box.open .content,
+        .mobile-box.open .content {
             opacity: 1;
         }
 
@@ -460,13 +469,15 @@
             background: #FFA500;
         }
 
-        /* Video Section Styles */
-        .video-password-container {
+        /* Video and Mobile Section Styles */
+        .video-password-container,
+        .mobile-password-container {
             display: flex;
             justify-content: center;
             align-items: center;
             width: 100%;
             height: 100%;
+            flex-direction: column;
         }
 
         .password-input {
@@ -474,7 +485,7 @@
             font-size: 18px;
             border-radius: 5px;
             border: 2px solid #6c5ce7;
-            margin-right: 10px;
+            margin: 10px;
             background: rgba(255, 255, 255, 0.1);
             color: #fff;
         }
@@ -494,16 +505,36 @@
             border-radius: 30px;
             cursor: pointer;
             transition: transform 0.3s ease;
+            margin: 10px;
         }
 
         .submit-password:hover {
             transform: scale(1.1);
         }
 
-        .video-player {
+        .hint-button {
+            padding: 8px 16px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #000;
+            background: linear-gradient(45deg, #ffeb3b, #00ddeb, #7bed9f);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .hint-button:hover {
+            transform: scale(1.05);
+        }
+
+        .video-player,
+        .mobile-content {
             width: 100%;
             max-width: 600px;
             margin: 20px auto;
+            text-align: center;
         }
 
         .folder-container {
@@ -535,6 +566,14 @@
             display: none;
         }
 
+        .hint-text {
+            color: #fff;
+            font-size: 16px;
+            margin: 10px;
+            font-family: 'Poppins', sans-serif;
+            display: none;
+        }
+
         .cross-button {
             position: absolute;
             top: 10px;
@@ -560,7 +599,8 @@
 
             .message-box.open,
             .update-box.open,
-            .video-box.open {
+            .video-box.open,
+            .mobile-box.open {
                 width: 90%;
             }
 
@@ -573,6 +613,7 @@
             .game-button,
             .update-button,
             .video-button,
+            .mobile-button,
             .back-button {
                 font-size: 16px;
                 padding: 12px 24px;
@@ -601,7 +642,13 @@
                 padding: 8px 16px;
             }
 
-            .video-player {
+            .hint-button {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+
+            .video-player,
+            .mobile-content {
                 max-width: 90%;
             }
         }
@@ -630,8 +677,9 @@
         <button class="game-button" onclick="showGame()">Play Game</button>
         <button class="update-button" onclick="showUpdateBox()">New Update</button>
         <button class="video-button" onclick="showVideoBox()">Video Gallery</button>
+        <button class="mobile-button" onclick="showMobileBox()">Mobile Number</button>
         <div class="message-box-container" id="messageContainer">
-            <button class="back-button" onclick="backToMenu()">Back</button>
+            <button class="cross-button" onclick="backToMenu()">✖</button>
             <div class="message-box" id="textBox">
                 <div class="door door-left"></div>
                 <div class="door door-right"></div>
@@ -639,7 +687,7 @@
             </div>
         </div>
         <div class="update-box-container" id="updateContainer">
-            <button class="back-button" onclick="backToMenu()">Back</button>
+            <button class="cross-button" onclick="backToMenu()">✖</button>
             <div class="update-box" id="updateBox">
                 <div class="door door-left"></div>
                 <div class="door door-right"></div>
@@ -659,31 +707,48 @@
                     </div>
                     <div class="video-player" id="videoPlayer" style="display: none;">
                         <video controls width="100%">
-                            <source src="0722.mp4" video/mp4">
-
+                            <source src="0722.mp4" type="video/mp4">
                             Your browser does not support the video element.
                         </video>
                         <div class="folder-container">
                             <button class="folder-button" onclick="openFolder()">Media Folder</button>
                             <img src="1 (1).png" alt="s" width="390" />
-                            <img src="1 (2).png" alt=" Photo" width="390" />
-                            <img src="1 (3).png" alt=" Photo" width="390" />
-                            <img src="1 (4).png" alt=" Photo" width="390" />
-                            <img src="1 (6).png" alt=" Photo" width="390" />
+                            <img src="1 (2).png" alt="Photo" width="390" />
+                            <img src="1 (3).png" alt="Photo" width="390" />
+                            <img src="1 (4).png" alt="Photo" width="390" />
+                            <img src="1 (6).png" alt="Photo" width="390" />
                             <img src="1 (7).png" alt="Photo" width="390" />
-                            <img src="1 (8).png" alt=" Photo" width="390" />
+                            <img src="1 (8).png" alt="Photo" width="390" />
                             <img src="1 (9).png" alt="Photo" width="390" />
                             <img src="a.png" alt="Photo" width="390" />
                             <img src="b.png" alt="Photo" width="390" />
                             <img src="c.png" alt="Photo" width="390" />
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="mobile-box-container" id="mobileContainer">
+            <button class="cross-button" onclick="backToMenu()">✖</button>
+            <div class="mobile-box" id="mobileBox">
+                <div class="door door-left"></div>
+                <div class="door door-right"></div>
+                <div class="content" id="mobileContent">
+                    <div class="mobile-password-container" id="mobilePasswordContainer">
+                        <button class="hint-button" onclick="toggleHint()">Show Hint</button>
+                        <div class="hint-text" id="hintText">Hint: The password is the name of the enlightened one, found in the sacred texts of NALANDA LIBRARY. Enter it in all capital letters.</div>
+                        <input type="password" class="password-input" id="mobilePasswordInput" placeholder="Enter Password">
+                        <button class="submit-password" onclick="checkMobilePassword()">Submit</button>
+                        <div class="error-message" id="mobileErrorMessage">Incorrect Password</div>
+                    </div>
+                    <div class="mobile-content" id="mobileNumberDisplay" style="display: none;">
+                        <div style="font-size: 30px; font-weight: 700; color: #fff; line-height: 1.5;">Mobile Number: 9798682040</div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="game-container" id="gameContainer">
-            <button class="back-button" onclick="backToMenu()" id="gameBackButton">Back</button>
+            <button class="cross-button" onclick="backToMenu()">✖</button>
             <div id="gameInfo">Score: 0 | Health: 17 | Level: 1 | Time: 00:00 | High Score: 0 | Last Score: 0</div>
             <div id="gameOver">
                 <div>Game Over!</div>
@@ -711,6 +776,7 @@
             document.querySelector('.game-button').style.display = 'none';
             document.querySelector('.update-button').style.display = 'none';
             document.querySelector('.video-button').style.display = 'none';
+            document.querySelector('.mobile-button').style.display = 'none';
             document.getElementById('messageContainer').style.display = 'flex';
             toggleBox();
         }
@@ -720,6 +786,7 @@
             document.querySelector('.game-button').style.display = 'none';
             document.querySelector('.update-button').style.display = 'none';
             document.querySelector('.video-button').style.display = 'none';
+            document.querySelector('.mobile-button').style.display = 'none';
             document.getElementById('updateContainer').style.display = 'flex';
             toggleUpdateBox();
         }
@@ -729,8 +796,19 @@
             document.querySelector('.game-button').style.display = 'none';
             document.querySelector('.update-button').style.display = 'none';
             document.querySelector('.video-button').style.display = 'none';
+            document.querySelector('.mobile-button').style.display = 'none';
             document.getElementById('videoContainer').style.display = 'flex';
             toggleVideoBox();
+        }
+
+        function showMobileBox() {
+            document.querySelector('.toggle-button').style.display = 'none';
+            document.querySelector('.game-button').style.display = 'none';
+            document.querySelector('.update-button').style.display = 'none';
+            document.querySelector('.video-button').style.display = 'none';
+            document.querySelector('.mobile-button').style.display = 'none';
+            document.getElementById('mobileContainer').style.display = 'flex';
+            toggleMobileBox();
         }
 
         function showGame() {
@@ -738,6 +816,7 @@
             document.querySelector('.game-button').style.display = 'none';
             document.querySelector('.update-button').style.display = 'none';
             document.querySelector('.video-button').style.display = 'none';
+            document.querySelector('.mobile-button').style.display = 'none';
             document.getElementById('gameContainer').style.display = 'flex';
             document.getElementById('gameBackButton').style.display = 'none';
             const gameContainer = document.getElementById('gameContainer');
@@ -757,6 +836,7 @@
             const textBox = document.getElementById('textBox');
             const updateBox = document.getElementById('updateBox');
             const videoBox = document.getElementById('videoBox');
+            const mobileBox = document.getElementById('mobileBox');
             if (textBox.classList.contains('open')) {
                 textBox.classList.remove('open');
                 document.getElementById('content').innerHTML = '';
@@ -772,15 +852,24 @@
                 document.getElementById('errorMessage').style.display = 'none';
                 document.getElementById('passwordInput').value = '';
             }
+            if (mobileBox.classList.contains('open')) {
+                mobileBox.classList.remove('open');
+                document.getElementById('mobileNumberDisplay').style.display = 'none';
+                document.getElementById('mobilePasswordContainer').style.display = 'flex';
+                document.getElementById('mobileErrorMessage').style.display = 'none';
+                document.getElementById('mobilePasswordInput').value = '';
+                document.getElementById('hintText').style.display = 'none';
+            }
             document.getElementById('messageContainer').style.display = 'none';
             document.getElementById('updateContainer').style.display = 'none';
             document.getElementById('videoContainer').style.display = 'none';
+            document.getElementById('mobileContainer').style.display = 'none';
             document.getElementById('gameContainer').style.display = 'none';
             document.querySelector('.toggle-button').style.display = 'block';
             document.querySelector('.game-button').style.display = 'block';
             document.querySelector('.update-button').style.display = 'block';
             document.querySelector('.video-button').style.display = 'block';
-            document.getElementById('gameBackButton').style.display = 'block';
+            document.querySelector('.mobile-button').style.display = 'block';
             clearInterval(timerInterval);
             resetGame();
             if (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
@@ -823,6 +912,37 @@
 
         function openFolder() {
             window.open('media_folder/', '_blank');
+        }
+
+        // Mobile Number Section Functions
+        function toggleMobileBox() {
+            const mobileBox = document.getElementById('mobileBox');
+            if (mobileBox.classList.contains('open')) {
+                mobileBox.classList.remove('open');
+                document.getElementById('mobileNumberDisplay').style.display = 'none';
+                document.getElementById('mobilePasswordContainer').style.display = 'flex';
+                document.getElementById('mobileErrorMessage').style.display = 'none';
+                document.getElementById('mobilePasswordInput').value = '';
+                document.getElementById('hintText').style.display = 'none';
+            } else {
+                mobileBox.classList.add('open');
+            }
+        }
+
+        function toggleHint() {
+            const hintText = document.getElementById('hintText');
+            hintText.style.display = hintText.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function checkMobilePassword() {
+            const password = document.getElementById('mobilePasswordInput').value;
+            if (password === 'BUDDHA') {
+                document.getElementById('mobilePasswordContainer').style.display = 'none';
+                document.getElementById('mobileNumberDisplay').style.display = 'block';
+                document.getElementById('mobileErrorMessage').style.display = 'none';
+            } else {
+                document.getElementById('mobileErrorMessage').style.display = 'block';
+            }
         }
 
         // Message Box Script
