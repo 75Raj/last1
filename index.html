@@ -24,12 +24,6 @@
       text-align: center;
       position: relative;
       overflow: hidden;
-      transition: background 0.5s;
-    }
-
-    body.light-theme {
-      background: #f0f4ff;
-      color: #333;
     }
 
     h1 {
@@ -52,7 +46,8 @@
 
     .typing {
       margin: 20px 0;
-      font-size: clamp(1rem, 3vw, 1.2rem);
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      font-weight: 700;
       width: 90%;
       max-width: 600px;
       white-space: normal;
@@ -68,7 +63,7 @@
       background-size: 600%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: colorFlow 6s linear infinite, typing 5s steps(40, end);
+      animation: colorFlow 12s linear infinite, typing 5s steps(40, end);
     }
 
     @keyframes colorFlow {
@@ -113,35 +108,6 @@
       }
     }
 
-    .controls {
-      margin-top: 20px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    button {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 25px;
-      background: #ff4081;
-      color: #fff;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: transform 0.2s, background 0.3s;
-    }
-
-    button:hover {
-      transform: scale(1.05);
-      background: #ff80ab;
-    }
-
-    button:focus {
-      outline: 2px solid #00ff22;
-      outline-offset: 2px;
-    }
-
     .contact-box {
       margin-top: 20px;
       padding: 15px 30px;
@@ -176,7 +142,7 @@
       }
 
       .typing {
-        font-size: 1rem;
+        font-size: 1.2rem;
         width: 95%;
       }
 
@@ -195,50 +161,21 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon" />
     <span>Message me: 918969884164</span>
   </div>
-  <div class="controls">
-    <button id="toggleTheme" aria-label="Toggle Theme">Light Theme</button>
-    <button id="shareButton" aria-label="Share Message">Share</button>
-  </div>
 
   <script>
     const defaultMessage = "Every moment without you feels like forever. Kam se kam aap na to bol dete... Please, abhi bhi na bol do, bas ek message kar do. 💔";
-    const urlParams = new URLSearchParams(window.location.search);
-    let message = urlParams.get('message') || prompt("Enter a custom message (or leave blank for default):", "") || defaultMessage;
 
     const messageText = document.getElementById("messageText");
-    const toggleThemeBtn = document.getElementById("toggleTheme");
-    const shareButton = document.getElementById("shareButton");
     const contactBox = document.getElementById("contactBox");
     let i = 0;
 
     function typeMessage() {
-      if (i < message.length) {
-        messageText.textContent += message.charAt(i);
+      if (i < defaultMessage.length) {
+        messageText.textContent += defaultMessage.charAt(i);
         i++;
         setTimeout(typeMessage, 50);
       }
     }
-
-    toggleThemeBtn.addEventListener("click", () => {
-      document.body.classList.toggle("light-theme");
-      toggleThemeBtn.textContent = document.body.classList.contains("light-theme") ? "Dark Theme" : "Light Theme";
-      toggleThemeBtn.setAttribute("aria-label", document.body.classList.contains("light-theme") ? "Switch to Dark Theme" : "Switch to Light Theme");
-    });
-
-    shareButton.addEventListener("click", () => {
-      const shareUrl = `${window.location.origin}${window.location.pathname}?message=${encodeURIComponent(message)}`;
-      if (navigator.share) {
-        navigator.share({
-          title: "I Miss You ❤️",
-          text: message,
-          url: shareUrl
-        }).catch(console.error);
-      } else {
-        navigator.clipboard.writeText(shareUrl).then(() => {
-          alert("Link copied to clipboard! Share it via WhatsApp or any app.");
-        });
-      }
-    });
 
     contactBox.addEventListener("click", () => {
       window.location.href = "https://wa.me/918969884164?text=I%20miss%20you!%20Please%20message%20me%20back.";
