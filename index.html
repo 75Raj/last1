@@ -1,204 +1,166 @@
+from pathlib import Path
+
+# Updated HTML content with requested modifications
+html_content = """
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>I Miss You ❤️</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <title>Final Words 💔</title>
+    <style>
+        body {
+            background: #000;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
 
-    body {
-      height: 100vh;
-      background: #1e1f31;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
+        .message-box {
+            background: #000;
+            border-radius: 15px;
+            padding: 40px 20px;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 0 20px #444;
+            overflow: hidden;
+        }
 
-    h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      color: #ff80ab;
-      text-shadow: 0 0 10px #ff80ab, 0 0 20px #ff4081;
-      animation: glow 2s ease-in-out infinite alternate;
-      margin-bottom: 20px;
-    }
+        .line {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin: 25px 0;
+            background-size: 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 6s ease infinite, fadeIn 1s ease forwards;
+            opacity: 0;
+        }
 
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 10px #ff80ab;
-      }
+        .line:nth-child(odd) {
+            animation-name: gradientShift, slideLeft;
+        }
 
-      to {
-        text-shadow: 0 0 20px #ff4081;
-      }
-    }
+        .line:nth-child(even) {
+            animation-name: gradientShift, slideRight;
+        }
 
-    .typing {
-      margin: 20px 0;
-      font-size: clamp(1.5rem, 5vw, 2rem);
-      font-weight: 700;
-      width: 90%;
-      max-width: 600px;
-      white-space: normal;
-      overflow: hidden;
-      background: linear-gradient(45deg,
-          #ff4081,
-          #ff80ab,
-          #00ff22,
-          #ffeb3b,
-          #3f51b5,
-          #e91e63,
-          #ff4081);
-      background-size: 600%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: colorFlow 12s linear infinite, typing 5s steps(40, end);
-    }
+        .line:nth-child(1) { animation-delay: 0.2s; background-image: linear-gradient(45deg, #ff0000, #2600ff); }
+        .line:nth-child(2) { animation-delay: 0.4s; background-image: linear-gradient(45deg, #fffb00, #48ff00); }
+        .line:nth-child(3) { animation-delay: 0.6s; background-image: linear-gradient(45deg, #00ffd5, #002bff); }
+        .line:nth-child(4) { animation-delay: 0.8s; background-image: linear-gradient(45deg, #7a00ff, #ff00ab); }
+        .line:nth-child(5) { animation-delay: 1.0s; background-image: linear-gradient(45deg, #ff0000, #ff7300); }
+        .line:nth-child(6) { animation-delay: 1.2s; background-image: linear-gradient(45deg, #00ffd5, #002bff); }
+        .line:nth-child(7) { animation-delay: 1.4s; background-image: linear-gradient(45deg, #fffb00, #48ff00); }
+        .line:nth-child(8) { animation-delay: 1.6s; background-image: linear-gradient(45deg, #7a00ff, #ff00ab); }
+        .line:nth-child(9) { animation-delay: 1.8s; background-image: linear-gradient(45deg, #ff0000, #ff7300); }
+        .line:nth-child(10) { animation-delay: 2.0s; background-image: linear-gradient(45deg, #fffb00, #48ff00); }
+        .line:nth-child(11) { animation-delay: 2.2s; background-image: linear-gradient(45deg, #00ffd5, #002bff); }
+        .line:nth-child(12) { animation-delay: 2.4s; background-image: linear-gradient(45deg, #7a00ff, #00ffdd); }
+        .line:nth-child(13) { animation-delay: 2.6s; background-image: linear-gradient(45deg, #ff0000, #00a2ff); }
+        .line:nth-child(14) { animation-delay: 2.8s; background-image: linear-gradient(45deg, #00ffd5, #002bff); }
+        .line:nth-child(15) { animation-delay: 3.0s; background-image: linear-gradient(45deg, #fffb00, #48ff00); }
+        .line:nth-child(16) {
+            animation-delay: 3.2s;
+            background-image: linear-gradient(45deg, #ff00ab, #ff0000);
+            font-size: 2rem;
+            text-align: center;
+        }
 
-    @keyframes colorFlow {
-      0% {
-        background-position: 0% 50%;
-      }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-      100% {
-        background-position: 600% 50%;
-      }
-    }
+        @keyframes slideLeft {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
 
-    @keyframes typing {
-      from {
-        width: 0;
-      }
+        @keyframes slideRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
 
-      to {
-        width: 100%;
-      }
-    }
+        .button-box {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
 
-    .heart {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: #ff4081;
-      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-      animation: float 6s infinite ease-in-out;
-      opacity: 0.5;
-    }
+        .btn {
+            text-decoration: none;
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
 
-    @keyframes float {
-      0% {
-        transform: translateY(100vh) scale(0.5);
-        opacity: 0.5;
-      }
+        .btn-insta {
+            background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+        }
 
-      100% {
-        transform: translateY(-10vh) scale(1);
-        opacity: 0;
-      }
-    }
+        .btn-insta:hover {
+            filter: brightness(1.2);
+        }
 
-    .contact-box {
-      margin-top: 20px;
-      padding: 15px 30px;
-      background: #ff4081;
-      border-radius: 15px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: transform 0.2s, background 0.3s;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
+        .btn-whatsapp {
+            background-color: #25D366;
+        }
 
-    .contact-box:hover {
-      transform: scale(1.05);
-      background: #ff80ab;
-    }
+        .btn-whatsapp:hover {
+            background-color: #1ebe5d;
+        }
 
-    .contact-box:focus {
-      outline: 2px solid #00ff22;
-      outline-offset: 2px;
-    }
-
-    .contact-box img {
-      width: 24px;
-      height: 24px;
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.8rem;
-      }
-
-      .typing {
-        font-size: 1.2rem;
-        width: 95%;
-      }
-
-      .contact-box {
-        font-size: 0.9rem;
-        padding: 10px 20px;
-      }
-    }
-  </style>
+        .footer {
+            margin-top: 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: red;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
-  <h1 role="heading" aria-level="1">I Miss You 💖</h1>
-  <div class="typing" id="messageText" role="region" aria-live="polite"></div>
-  <div class="contact-box" id="contactBox" role="button" aria-label="Message on WhatsApp" tabindex="0">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon" />
-    <span>Message me: 918969884164</span>
-  </div>
+    <div class="message-box">
+        <div class="line">सच बोल रहा हूँ, मुझे नहीं पता कि आप हाँ बोलते या ना,</div>
+        <div class="line">लेकिन कम से कम "ना" तो कह देते।</div>
+        <div class="line">हाँ तो आप बोलेंगे नहीं, लेकिन ना तो बोल देते,</div>
+        <div class="line">कम से कम attitude में तो रहते।</div>
+        <div class="line">3 बार पटना जाने का घर से order मिला था –</div>
+        <div class="line">एक Saturday और Sunday को भी plan था,</div>
+        <div class="line">बस आप से एक answer मिल जाता तो हम आज पटना होते यार।</div>
+        <div class="line">लेकिन अब कोई आज नहीं, 1 year के बाद चले जाएँगे।</div>
+        <div class="line">हम आपको ये नहीं कह रहे कि इसमें आपको दोष है।</div>
+        <div class="line">Please यार, बस आपके लिए Insta install किया था</div>
+        <div class="line">और अब उसको delete भी नहीं कर रहा हूँ – बस...</div>
+        <div class="line">एक बार message कर देना या कम से कम "ना" ही बोल दो।</div>
+        <div class="line">अपना नाम भी बता देना please।</div>
+        <div class="line">बस आप ना बोल के block कर देना,</div>
+        <div class="line">दोबारा मैं आपको message नहीं करूँगा।</div>
+        <div class="line">It's my promise to you.</div>
 
-  <script>
-    const defaultMessage = "Every moment without you feels like forever. Kam se kam aap na to bol dete... Please, abhi bhi na bol do, bas ek message kar do. 💔";
+        <div class="button-box">
+            <a class="btn btn-insta" href="https://www.instagram.com/rlsp_yadav9143" target="_blank">Insta: @rlsp_yadav9143</a>
+            <a class="btn btn-whatsapp" href="https://wa.me/918969884164" target="_blank">WhatsApp Me</a>
+        </div>
 
-    const messageText = document.getElementById("messageText");
-    const contactBox = document.getElementById("contactBox");
-    let i = 0;
-
-    function typeMessage() {
-      if (i < defaultMessage.length) {
-        messageText.textContent += defaultMessage.charAt(i);
-        i++;
-        setTimeout(typeMessage, 50);
-      }
-    }
-
-    contactBox.addEventListener("click", () => {
-      window.location.href = "https://wa.me/918969884164?text=I%20miss%20you!%20Please%20message%20me%20back.";
-    });
-
-    contactBox.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        window.location.href = "https://wa.me/918969884164?text=I%20miss%20you!%20Please%20message%20me%20back.";
-      }
-    });
-
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = Math.random() * 3 + 3 + "s";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
-    }
-    setInterval(createHeart, 500);
-
-    window.onload = typeMessage;
-  </script>
+        <div class="footer">
+            Mobile: +91 89698884164<br>
+            Instagram: rlsp_yadav9143
+        </div>
+    </div>
 </body>
 
 </html>
